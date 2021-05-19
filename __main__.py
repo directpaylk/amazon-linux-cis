@@ -412,15 +412,12 @@ def configure_sshd():
         'MaxAuthTries': '4',
         'IgnoreRhosts': 'yes',
         'HostbasedAuthentication': 'no',
-        'PermitRootLogin': 'no',
-        'PermitEmptyPasswords': 'no',
         'PermitUserEnvironment': 'no',
         'Ciphers': 'aes256-ctr,aes192-ctr,aes128-ctr',
         'MACs': 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com',
         'ClientAliveInterval': '300',
         'ClientAliveCountMax': '0',
         'LoginGraceTime': '60',
-        'AllowUsers': 'ec2-user',
         'Banner': '/etc/issue.net'
     }).write()
 
