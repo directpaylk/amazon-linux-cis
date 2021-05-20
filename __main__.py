@@ -417,6 +417,11 @@ def configure_sshd():
         'MACs': 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com',
         'ClientAliveInterval': '300',
         'ClientAliveCountMax': '0',
+        'AllowUsers': 'ec1-user root',
+        'PermitEmptyPasswords' : 'no',
+
+        'KexAlgorithms': 'curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256',
+
         'LoginGraceTime': '60',
         'Banner': '/etc/issue.net'
     }).write()
@@ -478,7 +483,14 @@ def configure_password_parmas():
     }).write()
 
     exec_shell([
-        'useradd -D -f 30'
+        'useradd -D -f 30',
+        'chage --maxdays 90 root',
+        'chage --maxdays 90 ec2-user',
+        'chage --mindays 7 root',
+        'chage --mindays 7 ec2-user',
+        'chage --warndays 7 root',
+        'chage --warndays 7 ec2-user'
+
     ])
 
 
