@@ -316,24 +316,23 @@ def disable_uncommon_protocols():
 
 def configure_iptables():
     """3.6 Firewall Configuration"""
+    """update ip6 rules only"""
     Package('iptables').install()
 
     exec_shell([
-        'iptables -F',
-        'iptables -P INPUT DROP',
-        'iptables -P OUTPUT DROP',
-        'iptables -P FORWARD DROP',
-        'iptables -A INPUT -i lo -j ACCEPT',
-        'iptables -A OUTPUT -o lo -j ACCEPT',
-        'iptables -A INPUT -s 127.0.0.0/8 -j DROP',
-        'iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT',
-        'iptables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT',
-        'iptables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT',
-        'iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT',
-        'iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT',
-        'iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT',
-        'iptables -A INPUT -p tcp --dport 22 -m state --state NEW -j ACCEPT',
-        'iptables-save'
+        'yum install iptables-services -y', 
+        'systemctl enable ip6tables', 
+        'systemctl start ip6tables',
+
+
+        'ip6tables -P INPUT DROP',
+        'ip6tables -P OUTPUT DROP',
+        'ip6tables -P FORWARD DROP',
+        'ip6tables -A INPUT -i lo -j ACCEPT', 
+        'ip6tables -A OUTPUT -o lo -j ACCEPT', 
+        'ip6tables -A INPUT -s ::1 -j DROP',
+        'service ip6tables save'
+
     ])
 
 
