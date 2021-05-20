@@ -140,7 +140,7 @@ def disable_inetd_services():
         'chargen-dgram', 'chargen-stream', 'daytime-dgram', 'daytime-stream',
         'discard-dgram', 'discard-stream', 'echo-dgram', 'echo-stream',
         'time-dgram', 'time-stream', 'rexec', 'rlogin', 'rsh', 'talk',
-        'telnet', 'tftp', 'rsync', 'xinetd'
+        'telnet', 'tftp', 'rsync', 'xinetd','nfs-server','rpcbind','nfs'
     ]
 
     for srv in services:
