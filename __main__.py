@@ -416,7 +416,7 @@ def configure_sshd():
         'MACs': 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com',
         'ClientAliveInterval': '300',
         'ClientAliveCountMax': '0',
-        'AllowUsers': 'ec1-user root',
+        'AllowUsers': 'ec2-user root',
         'PermitEmptyPasswords' : 'no',
 
         'KexAlgorithms': 'curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256',
